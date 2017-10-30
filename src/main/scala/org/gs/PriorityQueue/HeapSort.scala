@@ -31,8 +31,7 @@ private def rearrangeOrder(comp:(Int,Int)=> Boolean):Unit={
     }
   }
    loop(this.length/2)
-
-  }
+ }
 
 
 }
