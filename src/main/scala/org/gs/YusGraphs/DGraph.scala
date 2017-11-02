@@ -160,32 +160,42 @@ class DirectedCycle(g: DGraph) {
   }
 
 }
+
+/// Depth first Order gives the tropological order. Diagraph can have topological order only if no directed cycles are present in the graph.
+
 class depthFirstOrder(g: DGraph) {
 
-  var isCyclic = false
   import scala.collection.mutable.Stack
+
   var reversePost = Stack[Int]()
-  var marked : Map[Int,Boolean] = (g.Vertices zip Array.fill[Boolean](g.Vertices.length)(false)).toMap
+  val marked: Map[Int, Boolean] = (g.Vertices zip Array.fill[Boolean](g.Vertices.length)(false)).toMap
+  marked.foldLeft(marked) { (x, m) => RunDFSOnVertex(x, m._1) }
 
-  marked.foreach(x => if (!x._2) dfs(x._1))
+  def RunDFSOnVertex(vertices: Map[Int, Boolean], index: Int): Map[Int, Boolean] = {
 
-  private def dfs(child: Int): Unit = {
-    g.adj(child) foreach (w =>
-      if (!marked(w)) {
-        marked += (w ->  true)
-        dfs(w)
-      }
-      )
+    if (vertices(index) == true) vertices
+    else {
+      var markedVertices = vertices
+      markedVertices += (index -> true)
+      dfs(index)
+
+      def dfs(child: Int): Unit = {
+        g.adj(child) foreach (w =>
+          if (!markedVertices(w)) {
+            markedVertices += (w -> true
+              )
+            dfs(w)
+          }
+          )
         reversePost.push(child)
+      }
+
+
+      markedVertices
+
+    }
   }
-
 }
-
-
-
-
-
-
 
 
 
