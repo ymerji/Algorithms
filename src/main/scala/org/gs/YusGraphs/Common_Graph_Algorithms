@@ -1,0 +1,9 @@
+1. Euclerian Path or Cycle/circuit : For a connected Graph, Euclerian path is if we can start from one vertex v and reach vertex w, with tralling thru each edge only once.
+ Euclerian cycle/circuit is same as Euclerian path where you have a path back to the same vertex v.
+ ALgorith explained on :http://www.geeksforgeeks.org/eulerian-path-and-circuit/
+
+ 2. Bipartate Graph: Check if a graph vertices can be divided into two sets, if every vertex from one set is connected to the vertex in another set i.e There are no edges where both vertexes are in the same set.
+ http://www.geeksforgeeks.org/bipartite-graph/
+
+ 3. Check if there is a bridge and Identify the bridge edge: Bridge in a graph is an edge,which if removed disconnects the graph. Algorithm is to remove one edge at a time and check if the graph is still connected.
+ http://www.geeksforgeeks.org/bridge-in-a-graph/
